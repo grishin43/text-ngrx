@@ -1,0 +1,247 @@
+@import "../../assets/scss/_var";
+
+$navbar-height: 70px;
+$sidebar-width: 300px;
+$sidebar_hidden-width: 60px;
+$sidebar-width_mobile: 250px;
+$sidebar-offset: 225px;
+$sidebar-offset_mobile: 175px;
+
+:host ::ng-deep {
+  .white-box {
+    background: $color-white;
+    padding: 30px;
+
+    @media screen and (max-width: 575px) {
+      padding: 20px;
+    }
+  }
+
+  .ngx-pagination {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+
+    li {
+      &.current {
+        background: $color-blue;
+      }
+
+      border-radius: 2px;
+    }
+  }
+}
+
+.dashboard-header {
+  background: $color-white;
+  height: $navbar-height;
+  padding: 0;
+
+  h3 {
+    margin: 0;
+
+    @media screen and (max-width: 575px) {
+      font-size: 16px;
+    }
+  }
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.dashboard-content {
+  background: $color-gray;
+  min-height: calc(100vh - #{$navbar-height});
+  padding: 20px 0;
+}
+
+.actions-navbar {
+  margin: 0;
+  font-size: 15px;
+
+  span {
+    color: $color-gray_dark;
+  }
+
+  li:not(:last-child) {
+    margin-right: 20px;
+  }
+
+  .button-default {
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-size: 14px;
+
+    & + .button-default, + .dd-absolute_outer {
+      margin-right: 5px;
+    }
+  }
+}
+
+.button-default {
+  font-size: 15px;
+  padding: 9px 25px;
+  border-radius: 4px;
+  border: 1px solid;
+
+  @include transition(all .15s ease-in-out);
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.blue {
+    background: $color-blue;
+    border-color: $color-blue;
+    color: #ffffff;
+
+    &:hover:not(:disabled) {
+      background: $color-blue_dark;
+      border-color: $color-blue_dark;
+    }
+  }
+}
+
+.dashboard-sidebar {
+  background: $color-white;
+  height: 100vh;
+  width: $sidebar_hidden-width;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
+  @include transition(all .2s linear);
+
+  &.sidebar-open {
+    width: $sidebar-width;
+    @media screen and (max-width: 575px) {
+      width: $sidebar-width_mobile;
+    }
+  }
+}
+
+.dashboard-main {
+  padding-left: $sidebar_hidden-width;
+  @include transition(all .2s linear);
+
+  &.sidebar-open {
+    @media screen and (min-width: 1200px) {
+      padding-left: $sidebar-width;
+    }
+  }
+}
+
+.dashboard-sidebar_header {
+  height: $navbar-height;
+  padding: 0 20px 0 10px;
+
+  .button-default {
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 2px;
+  }
+}
+
+.logo-default img {
+  max-height: 50px;
+}
+
+.dashboard-menu {
+  padding: 15px 0;
+
+  li {
+    a {
+      display: block;
+      font-size: 15px;
+      padding: 12px 40px 12px 20px;
+      color: $color-black;
+      background: $color-white;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      @include transition(all .15s ease-in-out);
+
+      &:hover {
+        text-decoration: none;
+        background: $color-gray_light;
+      }
+
+      &.active {
+        background: $color-gray;
+      }
+
+      i {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  li:not(:last-child) {
+    a {
+      border-bottom: 1px solid $color-gray;
+    }
+  }
+}
+
+.dd-absolute_outer {
+  display: inline-block;
+  position: relative;
+
+  &:hover {
+    .dd-absolute_inner {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .dd-absolute_inner {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    padding-top: 10px;
+    width: 50px;
+    @include transition(all 0.2s ease-in-out);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .dd-absolute {
+    background: #ffffff;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+    padding: 5px 0;
+
+    li {
+      display: block;
+      width: 100%;
+
+      a {
+        border: none;
+        -webkit-appearance: none;
+        display: block;
+        font-size: 14px;
+        padding: 2px 10px;
+        @include transition(all 0.2s ease-in-out);
+
+        &.active{
+          background: $color-blue;
+          color: $color-white
+        }
+
+        &:not(.active):hover {
+          background: $color-gray_light;
+        }
+      }
+    }
+  }
+}
+

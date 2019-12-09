@@ -1,0 +1,207 @@
+@import "../../../assets/scss/_var";
+
+body {
+  overflow-x: hidden;
+  background: $color-white;
+  font: $global-font;
+  color: $color-black;
+  @media screen and (max-width: 575px) {
+    font-size: 14px;
+  }
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1140px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+[class*=col-] {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
+}
+
+
+h1 {
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.max-width_md {
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vertical_padding_md {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.checkbox-default {
+  display: none;
+
+  &:checked + .checkbox-default_label {
+    &:before {
+      background: $color-blue;
+      color: $color-white;
+      box-shadow: 0 0 0 1px $color-blue;
+    }
+  }
+}
+
+label {
+  cursor: pointer;
+  font: inherit;
+
+  &.form-label {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: inline-block;
+
+    &.checkbox-default_label {
+      position: relative;
+      padding-left: 25px;
+
+      &:before {
+        content: '\2713';
+        font-size: 12px;
+        font-weight: 800;
+        text-align: center;
+        border-radius: 4px;
+        line-height: 15px;
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        top: 2px;
+        left: 0;
+        background: $color-gray;
+        color: $color-gray;
+        box-shadow: 0 0 0 1px #c3c3c3;
+
+        @include transition(all .15s ease-in-out);
+      }
+    }
+  }
+}
+
+input {
+  font: inherit;
+
+  &.form-control {
+    border: 1px solid $color-gray;
+    -webkit-appearance: none;
+    background: $color-gray;
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 10px 12px;
+    height: 42px;
+    display: block;
+    width: 100%;
+  }
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 25px;
+
+  .form-error {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 4px;
+    font-size: 10px;
+    text-align: right;
+    width: 100%;
+  }
+}
+
+.form-error {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  z-index: 1;
+  color: $color-red;
+}
+
+.button-default {
+  font: inherit;
+  padding: 10px 25px;
+  border-radius: 4px;
+  border: 1px solid;
+  transition: all 0.15s ease-in-out;
+  -webkit-appearance: button;
+  line-height: inherit;
+  display: inline-block;
+
+  @include transition(all .15s ease-in-out);
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.blue {
+    background: $color-blue;
+    border-color: $color-blue;
+    color: #ffffff;
+
+    &:hover:not(:disabled) {
+      background: $color-blue_dark;
+      border-color: $color-blue_dark;
+    }
+  }
+}
+
+.link-default {
+  color: $color-blue;
+  font-size: 15px;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

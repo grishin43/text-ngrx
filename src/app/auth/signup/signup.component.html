@@ -1,0 +1,62 @@
+<div class="container min-vh-100">
+  <div class="row min-vh-100 align-items-center">
+    <div class="col-12">
+      <div class="max-width_md vertical_padding_md">
+        <h1>{{ 'register.title' | translate }}</h1>
+        <form [formGroup]="signUpForm" novalidate (ngSubmit)="onSubmit(signUpForm.value)">
+          <div class="form-group">
+            <label for="user_login" class="form-label">{{ 'register.fields.email.label' | translate }}</label>
+            <input type="email" class="form-control" name="user_login" id="user_login"
+                   [placeholder]="'register.fields.email.placeholder' | translate"
+                   formControlName="account" required>
+            <div class="form-error"
+                 *ngIf="signUpForm.get('account').touched && signUpForm.get('account').hasError('required')">
+              {{ 'register.fields.email.errors.empty_field' | translate }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="user_name" class="form-label">{{ 'register.fields.name.label' | translate }}</label>
+            <input type="email" class="form-control" name="user_name" id="user_name"
+                   [placeholder]="'register.fields.name.placeholder' | translate"
+                   formControlName="name" required>
+            <div class="form-error"
+                 *ngIf="signUpForm.get('name').touched && signUpForm.get('name').hasError('required')">
+              {{ 'register.fields.name.errors.empty_field' | translate }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="user_pass" class="form-label">{{ 'register.fields.password.label' | translate }}</label>
+            <input type="password" class="form-control" name="user_pass" id="user_pass"
+                   [placeholder]="'register.fields.password.placeholder' | translate"
+                   formControlName="password" required>
+            <div class="form-error"
+                 *ngIf="signUpForm.get('password').touched && signUpForm.get('password').hasError('required')">
+              {{ 'register.fields.password.errors.empty_field' | translate }}
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" class="checkbox-default" id="sign_in-after" name="sign_in-after"
+                   (change)="loginAfter = !loginAfter">
+            <label class="checkbox-default_label form-label" for="sign_in-after">
+              {{ 'register.fields.login_immediately.label' | translate }}
+            </label>
+          </div>
+          <div class="row align-items-center justify-content-end">
+            <div class="col-auto">
+              <a routerLink="/login" class="link-default">
+                {{ 'register.buttons.login' | translate }}
+              </a>
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="button-default blue" [disabled]="signUpForm.invalid || loading">
+                {{ 'register.buttons.register' | translate }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

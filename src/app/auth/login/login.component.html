@@ -1,0 +1,45 @@
+<div class="container min-vh-100">
+  <div class="row min-vh-100 align-items-center">
+    <div class="col-12">
+      <div class="max-width_md vertical_padding_md">
+        <h1>{{ 'login.title' | translate }}</h1>
+        <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit(loginForm.value)">
+          <div class="form-group">
+            <label for="user_login" class="form-label">{{ 'login.fields.login.label' | translate }}</label>
+            <input type="email" class="form-control" name="user_login" id="user_login"
+                   [placeholder]="'login.fields.login.placeholder' | translate"
+                   formControlName="account" required>
+            <div class="form-error"
+                 *ngIf="loginForm.get('account').touched && loginForm.get('account').hasError('required')">
+              {{ 'login.fields.login.errors.empty_field' | translate }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="user_pass" class="form-label">{{ 'login.fields.password.label' | translate }}</label>
+            <input type="password" class="form-control" name="user_pass" id="user_pass"
+                   [placeholder]="'login.fields.password.placeholder' | translate"
+                   formControlName="password" required>
+            <div class="form-error"
+                 *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')">
+              {{ 'login.fields.password.errors.empty_field' | translate }}
+            </div>
+          </div>
+          <div class="row align-items-center justify-content-end">
+            <div class="col-auto">
+              <a routerLink="/sign-up" class="link-default">
+                {{ 'login.buttons.register' | translate }}
+              </a>
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="button-default blue" [disabled]="loginForm.invalid || loading">
+                {{ 'login.buttons.login' | translate }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
