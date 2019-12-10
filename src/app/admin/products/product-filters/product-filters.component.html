@@ -1,0 +1,31 @@
+<div class="white-box">
+  <div class="row">
+    <div class="col-lg-4 col-md-5 col-12">
+      <div class="form-group d-flex align-items-center flex-md-nowrap flex-wrap mb-md-0">
+        <label for="product-publisher"
+               class="form-label">{{ 'admin.products.filters.publishers.title' | translate }}</label>
+        <select class="form-control" name="product-publisher" id="product-publisher"
+                [(ngModel)]="publisherFilter">
+          <option selected value="">{{ 'admin.products.filters.label_all' | translate }}</option>
+          <option *ngFor="let item of publishers | keyvalue" [value]="item.key">{{item.value}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-5 col-12">
+      <div class="form-group d-flex align-items-center flex-md-nowrap flex-wrap mb-md-0">
+        <label for="product-publisher"
+               class="form-label">{{ 'admin.products.filters.categories.title' | translate }}</label>
+        <select class="form-control" name="product-categories" id="product-categories"
+                [(ngModel)]="categoryFilter">
+          <option selected value="">{{ 'admin.products.filters.label_all' | translate }}</option>
+          <option *ngFor="let item of categories | keyvalue"
+                  [value]="item.key">{{item.value | translate}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-2 col-12">
+      <button class="button-default blue"
+              (click)="resetFilters()">{{ 'admin.products.filters.buttons.reset' | translate }}</button>
+    </div>
+  </div>
+</div>

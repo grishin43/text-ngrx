@@ -1,0 +1,17 @@
+<div class="product-cart d-flex flex-wrap">
+  <div class="product-image"
+       [ngStyle]="{background: 'url(' + item.image + ') no-repeat top center/contain'}"></div>
+  <div class="product-info">
+    <h5>{{item.name | translate}}</h5>
+    <p>{{ 'admin.products.properties.id' | translate }}: <span>{{item.id}}</span></p>
+    <p>{{ 'admin.products.properties.author' | translate }}: <span>{{item.author | translate}}</span></p>
+    <p>{{ 'admin.products.properties.publisher' | translate }}: <span>{{item.publisher}}</span></p>
+    <p>{{ 'admin.products.properties.category' | translate }}: <span>{{item.category | translate}}</span></p>
+    <p>{{ 'admin.products.properties.page_count' | translate }}: <span>{{item.pageCount}}</span></p>
+    <p>{{ 'admin.products.properties.price' | translate }}: <span>{{item.price}}</span></p>
+    <p>{{ 'admin.products.properties.stock' | translate }}:
+      <span *ngIf="item.stock">{{'admin.products.properties.stock_true' | translate}}</span>
+      <span *ngIf="!item.stock">{{'admin.products.properties.stock_false' | translate}}</span>
+    </p>
+  </div>
+</div>

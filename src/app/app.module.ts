@@ -14,10 +14,12 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {TranslateModule, TranslateLoader, TranslateService, LangChangeEvent} from '@ngx-translate/core';
 import {HttpService} from './services/http.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {FilterPipe} from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,9 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     AngularFontAwesomeModule
   ],
   providers: [],
+  exports: [
+    FilterPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

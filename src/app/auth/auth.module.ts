@@ -1,5 +1,3 @@
-import { AccountComponent } from './account.component';
-import { AccountRouting } from './auth.routing';
 import { AuthEffects } from './store/effects/auth.effect';
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
@@ -14,14 +12,12 @@ import { SignupComponent } from './signup/signup.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    AccountRouting,
     StoreModule.forFeature('authModule', reducer),
     EffectsModule.forFeature([AuthEffects]),
     TranslateModule
   ],
   declarations: [
      LoginComponent,
-     AccountComponent,
      SignupComponent
   ]
 })

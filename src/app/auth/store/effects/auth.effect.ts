@@ -10,6 +10,9 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
+  constructor(private http: HttpClient, private actions$: Actions, private authService: AuthService, private router: Router) {
+  }
+
   @Effect()
   signUp$: Observable<Action> = this
     .actions$
@@ -60,7 +63,4 @@ export class AuthEffects {
     .pipe(
       ofType<authAction.LoginDone>(authAction.LoginActionTypes.LOGIN_DONE),
       tap(action => console.log(action)));
-
-  constructor(private http: HttpClient, private actions$: Actions, private authService: AuthService, private router: Router) {
-  }
 }

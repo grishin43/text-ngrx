@@ -1,0 +1,12 @@
+<div class="white-box">
+  <div class="row">
+    <div class="col-md-6 col-12 mb-30"
+         *ngFor="let product of productList | paginate: { itemsPerPage: 5, currentPage: page }">
+      <app-product-item [item]="product"></app-product-item>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="page = $event"
+                       [previousLabel]="'admin.pagination.prev_label' | translate"
+                       [nextLabel]="'admin.pagination.next_label' | translate">
+  </pagination-controls>
+</div>
