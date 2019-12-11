@@ -15,12 +15,13 @@ export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   loading = false;
   loginAfter = false;
+  errors: any;
 
   constructor(private formBuilder: FormBuilder, private store: Store<AuthState>) {
   }
 
   ngOnInit() {
-    this.store.select(selectIsLoginState).subscribe(res => {
+    this.store.select(selectIsLoginState).subscribe((res: boolean) => {
       this.loading = res;
     });
     this.signUpForm = this.formBuilder.group({
@@ -30,22 +31,17 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  onSubmit(formData) {
-    const authData = {
-      account: formData.account.trim(),
-      name: formData.name.trim(),
-      password: formData.password.trim()
-    };
+  signUp() {
+    this.store.dispatch(new AuthActions.SignUp(this.signUpForm.value));
 
-    this.store.dispatch(new AuthActions.SignUp(authData));
-
-    this.store.select(selectLoginState).subscribe(res => {
+    this.store.select(selectLoginState).subscribe((res: any) => {
+      this.errors = res;
       if (res) {
         Swal.fire({
-          title: 'Error',
-          text: res,
+          title: res.title,
+          text: res.text,
           icon: 'error',
-          confirmButtonText: 'OK',
+          confirmButtonText: res.button,
           customClass: {
             confirmButton: 'button-default blue'
           }
@@ -53,8 +49,8 @@ export class SignupComponent implements OnInit {
       }
     });
 
-    if (this.loginAfter) {
-      this.store.dispatch(new AuthActions.LoginSuccess());
+    if (this.loginAfter && !this.errors) {
+      this.store.dispatch(new AuthActions.LoginSuccess(this.signUpForm.value));
     }
   }
 }

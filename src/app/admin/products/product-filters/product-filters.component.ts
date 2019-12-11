@@ -1,4 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {ProductState} from '../../store/reducers/product.reducers';
+import * as ProductActions from '../../store/actions/product.actions';
 
 @Component({
   selector: 'app-product-filters',
@@ -8,17 +11,27 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ProductFiltersComponent implements OnInit {
   @Input() categories: any;
   @Input() publishers: any;
-  publisherFilter = '';
-  categoryFilter = '';
+  publisher = '';
+  category = '';
 
-  constructor() {
+  constructor(private store: Store<ProductState>) {
   }
 
   ngOnInit() {
   }
 
+  changePublisher(publisherId) {
+    this.publisher = publisherId;
+    this.store.dispatch(new ProductActions.SetPublisherFilter(publisherId));
+  }
+
+  changeCategory(categoryId) {
+    this.category = categoryId;
+    this.store.dispatch(new ProductActions.SetCategoryFilter(categoryId));
+  }
+
   resetFilters() {
-    this.publisherFilter = '';
-    this.categoryFilter = '';
+    this.changePublisher('');
+    this.changeCategory('');
   }
 }

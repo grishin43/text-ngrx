@@ -6,6 +6,7 @@ import {AuthState} from '../auth/store/reducers/auth.reducer';
 import {selectUser} from '../auth/store';
 import {NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
+import * as ProductActions from './store/actions/product.actions';
 
 @Component({
   selector: 'app-admin',
@@ -44,6 +45,9 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.user) {
+      this.user = {name: localStorage.getItem('user-name')};
+    }
     this.routeTitle = this.getRouteTitle(this.router.url);
   }
 
@@ -51,7 +55,13 @@ export class AdminComponent implements OnInit {
     this.store.dispatch(new AuthActions.LogOut());
   }
 
-  getRouteTitle(route) {
+  changeLanguage(lang: string) {
+    this.translateService.use(lang);
+    this.store.dispatch(new ProductActions.Upload(lang));
+    this.store.dispatch(new ProductActions.GetFilters(lang));
+  }
+
+  getRouteTitle(route: string) {
     return /[^/]*$/.exec(route)[0];
   }
 }

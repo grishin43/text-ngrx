@@ -1,7 +1,7 @@
 import * as productActions from '../actions/product.actions';
 import {Action} from '@ngrx/store';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {catchError, map, mergeMap, switchMap, tap} from 'rxjs/operators';
+import {catchError, map, switchMap} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {HttpService} from '../../../services/http.service';
@@ -40,6 +40,20 @@ export class ProductEffects {
     .actions$
     .pipe(
       ofType(productActions.ProductActionsTypes.GET_FILTERS_SUCCESS)
+    );
+
+  @Effect({dispatch: false})
+  setCategoryFilter$: Observable<Action> = this
+    .actions$
+    .pipe(
+      ofType<productActions.SetCategoryFilter>(productActions.ProductActionsTypes.SET_CATEGORY_FILTER)
+    );
+
+  @Effect({dispatch: false})
+  setPublisherFilter$ = this
+    .actions$
+    .pipe(
+      ofType<productActions.SetCategoryFilter>(productActions.ProductActionsTypes.SET_PUBLISHER_FILTER)
     );
 
   @Effect({dispatch: false})

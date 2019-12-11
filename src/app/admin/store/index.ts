@@ -13,3 +13,23 @@ export const selectFilters = createSelector(
   selectProductState,
   fromProduct.getFilters
 );
+
+export const selectCategoryFilter = createSelector(
+  selectProductState,
+  fromProduct.getCategoryFilter
+);
+
+export const selectPublisherFilter = createSelector(
+  selectProductState,
+  fromProduct.getPublisherFilter
+);
+
+export const selectProductsError = createSelector(
+  selectProductState,
+  fromProduct.getProductsError
+);
+
+export const selectFiltersError = createSelector(
+  selectProductState,
+  fromProduct.getFiltersError
+);

@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="max-width_md vertical_padding_md">
         <h1>{{ 'login.title' | translate }}</h1>
-        <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit(loginForm.value)">
+        <form [formGroup]="loginForm" novalidate (ngSubmit)="signIn()">
           <div class="form-group">
             <label for="user_login" class="form-label">{{ 'login.fields.login.label' | translate }}</label>
             <input type="email" class="form-control" name="user_login" id="user_login"

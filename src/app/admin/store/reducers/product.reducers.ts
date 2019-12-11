@@ -1,19 +1,21 @@
 import {ProductActionsTypes, ProductActionsUnion} from '../actions/product.actions';
 
 export interface ProductState {
-  loaded: boolean;
-  errorMsg: string;
+  productsErrorMsg: string;
   products: any;
+  filtersErrorMsg: string;
   filters: any;
-  filtersLoaded: boolean;
+  publisherFilter: any;
+  categoryFilter: any;
 }
 
 export const initialState: ProductState = {
-  loaded: false,
-  errorMsg: null,
+  productsErrorMsg: null,
   products: null,
+  filtersErrorMsg: null,
   filters: null,
-  filtersLoaded: false
+  publisherFilter: '',
+  categoryFilter: ''
 };
 
 export function reducer(state: ProductState = initialState, actions: ProductActionsUnion): ProductState {
@@ -21,27 +23,34 @@ export function reducer(state: ProductState = initialState, actions: ProductActi
     case ProductActionsTypes.UPLOAD_SUCCESS:
       return {
         ...state,
-        errorMsg: null,
         products: actions.payload,
-        loaded: true
+        productsErrorMsg: null
       };
     case ProductActionsTypes.UPLOAD_FAIL:
       return {
         ...state,
-        errorMsg: 'Nothing to show',
-        loaded: false
+        productsErrorMsg: 'Nothing to show'
       };
     case ProductActionsTypes.GET_FILTERS_SUCCESS:
       return {
         ...state,
         filters: actions.payload,
-        filtersLoaded: true
+        filtersErrorMsg: null
       };
     case ProductActionsTypes.GET_FILTERS_FAIL:
       return {
         ...state,
-        errorMsg: 'Nothing to show',
-        filtersLoaded: false
+        filtersErrorMsg: 'Nothing to show'
+      };
+    case ProductActionsTypes.SET_CATEGORY_FILTER:
+      return {
+        ...state,
+        categoryFilter: actions.payload
+      };
+    case ProductActionsTypes.SET_PUBLISHER_FILTER:
+      return {
+        ...state,
+        publisherFilter: actions.payload
       };
     default:
       return state;
@@ -50,3 +59,7 @@ export function reducer(state: ProductState = initialState, actions: ProductActi
 
 export const getProducts = (state: ProductState) => state.products;
 export const getFilters = (state: ProductState) => state.filters;
+export const getCategoryFilter = (state: ProductState) => state.categoryFilter;
+export const getPublisherFilter = (state: ProductState) => state.publisherFilter;
+export const getProductsError = (state: ProductState) => state.productsErrorMsg;
+export const getFiltersError = (state: ProductState) => state.filtersErrorMsg;

@@ -30,7 +30,7 @@ export class SignUpSuccess implements Action {
 export class SignUpFail implements Action {
   readonly type = SignUpActionTypes.SIGN_UP_FAIL;
 
-  constructor(public payload: string) {
+  constructor(public payload: any) {
   }
 }
 
@@ -47,12 +47,15 @@ export class Login implements Action {
 
 export class LoginSuccess implements Action {
   readonly type = LoginActionTypes.LOGIN_SUCCESS;
+
+  constructor(public payload: object) {
+  }
 }
 
 export class LoginFail implements Action {
   readonly type = LoginActionTypes.LOGIN_FAIL;
 
-  constructor(public payload: string) {
+  constructor(public payload: any) {
   }
 }
 
@@ -64,7 +67,7 @@ export class LoginDone implements Action {
   readonly type = LoginActionTypes.LOGIN_DONE;
 }
 
-export class LogOut implements Action{
+export class LogOut implements Action {
   readonly type = LoginActionTypes.LOGOUT;
 }
 

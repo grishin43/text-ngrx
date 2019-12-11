@@ -45,7 +45,7 @@
                   <ul class="dd-absolute list-unstyled">
                     <li *ngFor="let item of translateService.getLangs()">
                       <a type="button" [class.active]="item === translateService.currentLang"
-                         (click)="translateService.use(item)">
+                         (click)="changeLanguage(item)">
                         {{item | uppercase}}
                       </a>
                     </li>

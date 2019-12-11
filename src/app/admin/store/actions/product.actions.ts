@@ -7,6 +7,8 @@ export enum ProductActionsTypes {
   GET_FILTERS = '[PRODUCTS] GET_FILTERS',
   GET_FILTERS_SUCCESS = '[PRODUCTS] GET_FILTERS_SUCCESS',
   GET_FILTERS_FAIL = '[PRODUCTS] GET_FILTERS_FAIL',
+  SET_PUBLISHER_FILTER = '[PRODUCTS] SET_PUBLISHER_FILTER',
+  SET_CATEGORY_FILTER = '[PRODUCTS] SET_CATEGORY_FILTER'
 }
 
 export class Upload implements Action {
@@ -45,5 +47,26 @@ export class GetFiltersFail implements Action {
   readonly type = ProductActionsTypes.GET_FILTERS_FAIL;
 }
 
+export class SetPublisherFilter implements Action {
+  readonly type = ProductActionsTypes.SET_PUBLISHER_FILTER;
 
-export type ProductActionsUnion = Upload | UploadSuccess | UploadFail | GetFilters | GetFiltersSuccess | GetFiltersFail;
+  constructor(public payload: any) {
+  }
+}
+
+export class SetCategoryFilter implements Action {
+  readonly type = ProductActionsTypes.SET_CATEGORY_FILTER;
+
+  constructor(public payload: any) {
+  }
+}
+
+export type ProductActionsUnion =
+  Upload
+  | UploadSuccess
+  | UploadFail
+  | GetFilters
+  | GetFiltersSuccess
+  | GetFiltersFail
+  | SetPublisherFilter
+  | SetCategoryFilter;

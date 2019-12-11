@@ -5,7 +5,7 @@
         <label for="product-publisher"
                class="form-label">{{ 'admin.products.filters.publishers.title' | translate }}</label>
         <select class="form-control" name="product-publisher" id="product-publisher"
-                [(ngModel)]="publisherFilter">
+                [(ngModel)]="publisher" (ngModelChange)="changePublisher(publisher)">
           <option selected value="">{{ 'admin.products.filters.label_all' | translate }}</option>
           <option *ngFor="let item of publishers | keyvalue" [value]="item.key">{{item.value}}</option>
         </select>
@@ -16,7 +16,7 @@
         <label for="product-publisher"
                class="form-label">{{ 'admin.products.filters.categories.title' | translate }}</label>
         <select class="form-control" name="product-categories" id="product-categories"
-                [(ngModel)]="categoryFilter">
+                [(ngModel)]="category" (ngModelChange)="changeCategory(category)">
           <option selected value="">{{ 'admin.products.filters.label_all' | translate }}</option>
           <option *ngFor="let item of categories | keyvalue"
                   [value]="item.key">{{item.value | translate}}</option>

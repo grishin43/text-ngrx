@@ -1,7 +1,10 @@
 <div class="white-box">
   <div class="row">
     <div class="col-md-6 col-12 mb-30"
-         *ngFor="let product of productList | paginate: { itemsPerPage: 5, currentPage: page }">
+         *ngFor="let product of productList
+         | filter:'publisherId':publisher
+         | filter: 'categoryId':category
+         | paginate: { itemsPerPage: 5, currentPage: page }">
       <app-product-item [item]="product"></app-product-item>
     </div>
   </div>

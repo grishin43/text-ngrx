@@ -44,4 +44,10 @@ export class HttpService implements TranslateLoader {
       });
     }));
   }
+
+  getAlerts(lang: string): Observable<any> {
+    return this.http.get(`./assets/json/translates/${lang}.json`).pipe(map((data: any) => {
+      return data.alerts;
+    }));
+  }
 }

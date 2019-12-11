@@ -3,9 +3,11 @@
     <div class="col-12 mb-20">
       <app-product-filters *ngIf="filters" [categories]="filters.categories.list"
                            [publishers]="filters.publishers.list"></app-product-filters>
+      <p *ngIf="filtersError">{{filtersError}}</p>
     </div>
     <div class="col-12">
       <app-product-list *ngIf="products" [productList]="products"></app-product-list>
+      <p *ngIf="productsError">{{productsError}}</p>
     </div>
   </div>
 </div>

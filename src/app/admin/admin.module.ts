@@ -15,8 +15,7 @@ import {ProductListComponent} from './products/product-list/product-list.compone
 import {ProductFiltersComponent} from './products/product-filters/product-filters.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {FormsModule} from '@angular/forms';
-import {AppModule} from '../app.module';
-
+import {FilterPipe} from '../pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,8 @@ import {AppModule} from '../app.module';
     DashboardComponent,
     ProductItemComponent,
     ProductListComponent,
-    ProductFiltersComponent
+    ProductFiltersComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
@@ -34,8 +34,7 @@ import {AppModule} from '../app.module';
     NgxPaginationModule,
     StoreModule.forFeature('adminModule', reducer),
     EffectsModule.forFeature([ProductEffects]),
-    FormsModule,
-    AppModule
+    FormsModule
   ]
 })
 export class AdminModule {

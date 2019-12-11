@@ -8,13 +8,15 @@ import { reducer } from './store/reducers/auth.reducer';
 import { StoreModule } from '@ngrx/store';
 import {TranslateModule} from '@ngx-translate/core';
 import { SignupComponent } from './signup/signup.component';
+import {RouterModule} from '@angular/router';
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     StoreModule.forFeature('authModule', reducer),
     EffectsModule.forFeature([AuthEffects]),
-    TranslateModule
+    TranslateModule,
+    RouterModule
   ],
   declarations: [
      LoginComponent,

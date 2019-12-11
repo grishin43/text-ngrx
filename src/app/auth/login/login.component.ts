@@ -33,28 +33,24 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(formData) {
-    this.store.dispatch(new AuthActions.IsLogin);
+  signIn() {
+    this.store.dispatch(new AuthActions.IsLogin());
 
-    const authData = {
-      account: formData.account.trim(),
-      password: formData.password.trim()
-    };
+    this.store.dispatch(new AuthActions.Login(this.loginForm.value));
 
-    this.store.dispatch(new AuthActions.Login(authData));
-    this.store.dispatch(new AuthActions.LoginDone);
+    this.store.dispatch(new AuthActions.LoginDone());
 
-    this.store.select(selectIsLoginState).subscribe(res => {
+    this.store.select(selectIsLoginState).subscribe((res: boolean) => {
       this.loading = res;
     });
 
-    this.store.select(selectLoginState).subscribe(res => {
+    this.store.select(selectLoginState).subscribe((res: any) => {
       if (res) {
         Swal.fire({
-          title: 'Error',
-          text: res,
+          title: res.title,
+          text: res.text,
           icon: 'error',
-          confirmButtonText: 'OK',
+          confirmButtonText: res.button,
           customClass: {
             confirmButton: 'button-default blue'
           }

@@ -2,14 +2,14 @@ import {LoginActionsUnion, LoginActionTypes, SignUpActionsUnion, SignUpActionTyp
 
 export interface AuthState {
   loggedIn: boolean;
-  errorMsg: string;
+  error: string;
   user: object;
   isLogging: boolean;
 }
 
 export const initialState: AuthState = {
   loggedIn: false,
-  errorMsg: null,
+  error: null,
   user: null,
   isLogging: false
 };
@@ -24,12 +24,12 @@ export function reducer(state: AuthState = initialState, action: LoginActionsUni
     case SignUpActionTypes.SIGN_UP_SUCCESS:
       return {
         ...state,
-        errorMsg: null
+        error: null
       };
     case SignUpActionTypes.SIGN_UP_FAIL:
       return {
         ...state,
-        errorMsg: 'User already exist'
+        error: action.payload
       };
     case LoginActionTypes.LOGIN:
       return {
@@ -40,20 +40,21 @@ export function reducer(state: AuthState = initialState, action: LoginActionsUni
       return {
         ...state,
         loggedIn: false,
-        errorMsg: null,
+        error: null,
         user: null,
         isLogging: false
       };
     case LoginActionTypes.LOGIN_SUCCESS:
       return {
         ...state,
+        user: action.payload,
         loggedIn: true,
-        errorMsg: null
+        error: null
       };
     case LoginActionTypes.LOGIN_FAIL:
       return {
         ...state,
-        errorMsg: 'Invalid user credential'
+        error: action.payload
       };
     case LoginActionTypes.IS_LOGIN:
       return {
@@ -71,6 +72,6 @@ export function reducer(state: AuthState = initialState, action: LoginActionsUni
 }
 
 export const getLoginState = (state: AuthState) => state.loggedIn;
-export const getAuthStatus = (state: AuthState) => state.errorMsg;
+export const getAuthStatus = (state: AuthState) => state.error;
 export const getIsLoginState = (state: AuthState) => state.isLogging;
 export const getUser = (state: AuthState) => state.user;
