@@ -8,7 +8,8 @@
       <app-product-item [item]="product"></app-product-item>
     </div>
   </div>
-  <pagination-controls (pageChange)="page = $event"
+  <pagination-controls (pageChange)="onPageChange($event)"
+                       (pageBoundsCorrection)="onPageChange($event)"
                        [previousLabel]="'admin.pagination.prev_label' | translate"
                        [nextLabel]="'admin.pagination.next_label' | translate">
   </pagination-controls>

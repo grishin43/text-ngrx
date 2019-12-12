@@ -9,7 +9,7 @@ import {ProductState} from '../../store/reducers/product.reducers';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  @Input() productList;
+  @Input() private productList;
 
   page = 1;
   publisher = '';
@@ -20,11 +20,14 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.store.select(selectCategoryFilter).subscribe((res) => {
-        this.category = res;
+      this.category = res;
     });
     this.store.select(selectPublisherFilter).subscribe((res) => {
-        this.publisher = res;
+      this.publisher = res;
     });
   }
 
+  onPageChange(pageNumber) {
+    this.page = pageNumber;
+  }
 }
