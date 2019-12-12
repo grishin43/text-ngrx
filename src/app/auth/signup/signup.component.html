@@ -42,6 +42,11 @@
             </label>
           </div>
           <div class="row align-items-center justify-content-end">
+            <div class="col">
+              <div class="form-loader" *ngIf="loading">
+                <img src="../../../assets/images/rolling.gif" alt="">
+              </div>
+            </div>
             <div class="col-auto">
               <a routerLink="/login" class="link-default">
                 {{ 'register.buttons.login' | translate }}

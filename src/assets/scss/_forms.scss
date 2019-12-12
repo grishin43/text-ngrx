@@ -111,3 +111,9 @@ input, select {
   color: $color-blue;
   font-size: 15px;
 }
+
+.form-loader {
+  img {
+    max-height: 30px;
+  }
+}

@@ -23,3 +23,8 @@ export const selectUser = createSelector(
   selectAuthState,
   fromAuth.getUser
 );
+
+export const selectSignUpState = createSelector(
+  selectAuthState,
+  fromAuth.getSignUpState
+);

@@ -34,11 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-    this.store.dispatch(new AuthActions.IsLogin());
-
-    this.store.dispatch(new AuthActions.Login(this.loginForm.value));
-
-    this.store.dispatch(new AuthActions.LoginDone());
+    this.store.dispatch(new AuthActions.LoginStart());
 
     this.store.select(selectIsLoginState).subscribe((res: boolean) => {
       this.loading = res;
@@ -57,5 +53,9 @@ export class LoginComponent implements OnInit {
         });
       }
     });
+
+    setTimeout(() => {
+      this.store.dispatch(new AuthActions.Login(this.loginForm.value));
+    }, 1500);
   }
 }

@@ -70,9 +70,9 @@ export class AuthEffects {
     );
 
   @Effect({dispatch: false})
-  loginDone$ = this
+  loginStart$ = this
     .actions$
     .pipe(
-      ofType<authAction.LoginDone>(authAction.LoginActionTypes.LOGIN_DONE),
-      tap(action => console.log(action)));
+      ofType<authAction.LoginStart>(authAction.LoginActionTypes.LOGIN_START)
+    );
 }

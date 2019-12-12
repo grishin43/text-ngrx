@@ -5,13 +5,15 @@ export interface AuthState {
   error: string;
   user: object;
   isLogging: boolean;
+  isSignUp: boolean;
 }
 
 export const initialState: AuthState = {
   loggedIn: false,
   error: null,
   user: null,
-  isLogging: false
+  isLogging: false,
+  isSignUp: false
 };
 
 export function reducer(state: AuthState = initialState, action: LoginActionsUnion | SignUpActionsUnion): AuthState {
@@ -24,12 +26,20 @@ export function reducer(state: AuthState = initialState, action: LoginActionsUni
     case SignUpActionTypes.SIGN_UP_SUCCESS:
       return {
         ...state,
-        error: null
+        error: null,
+        isSignUp: false
       };
     case SignUpActionTypes.SIGN_UP_FAIL:
       return {
         ...state,
-        error: action.payload
+        error: action.payload,
+        isSignUp: false
+      };
+    case SignUpActionTypes.SIGN_UP_START:
+      return {
+        ...state,
+        error: null,
+        isSignUp: true
       };
     case LoginActionTypes.LOGIN:
       return {
@@ -49,22 +59,20 @@ export function reducer(state: AuthState = initialState, action: LoginActionsUni
         ...state,
         user: action.payload,
         loggedIn: true,
-        error: null
+        error: null,
+        isLogging: false
       };
     case LoginActionTypes.LOGIN_FAIL:
       return {
         ...state,
-        error: action.payload
-      };
-    case LoginActionTypes.IS_LOGIN:
-      return {
-        ...state,
-        isLogging: true
-      };
-    case LoginActionTypes.LOGIN_DONE:
-      return {
-        ...state,
+        error: action.payload,
         isLogging: false
+      };
+    case LoginActionTypes.LOGIN_START:
+      return {
+        ...state,
+        error: null,
+        isLogging: true
       };
     default:
       return state;
@@ -74,4 +82,5 @@ export function reducer(state: AuthState = initialState, action: LoginActionsUni
 export const getLoginState = (state: AuthState) => state.loggedIn;
 export const getAuthStatus = (state: AuthState) => state.error;
 export const getIsLoginState = (state: AuthState) => state.isLogging;
+export const getSignUpState = (state: AuthState) => state.isSignUp;
 export const getUser = (state: AuthState) => state.user;
